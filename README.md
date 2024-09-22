@@ -1,0 +1,3 @@
+# Manhwa Scraper
+
+For my project, I am scraping a list of manhwa that I found on a popular site called anilist. Manhwa are Korean comics that are similar to Japanese manga. There are a few that I really like to read, so I wanted to see how popular they are compared to other manhwas and mangas that I like. Myanimelist is a website that has ratings for anime, manga, manhwa, and other forms of East Asian media. It does not have a dedicated list of manhwa, but it does include them on its platform, so I figured I can scrape anilist to get their list of the top 100 manhwa and then get other information about those manhwa on Myanimelist.
