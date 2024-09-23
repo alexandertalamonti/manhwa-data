@@ -4,6 +4,8 @@ In my ever-shrinking freetime, I enjoy reading manga among other comic media. Ho
 
 Thus, I used the MyAnimeList API to create a dataset with the list of titles. MyAnimeList as any anime/manga fan knows is the go-to source for information on a specific title. It has info about rankings, authorship, descriptions, and more. I pull as much information as I can and put it all into a dataframe which is then converted into a CSV.
 
+I believe that this dataset is useful to anyone who is looking to find some underrated manga to read. A lot of the titles I had not heard of before. The list is very comprehensive and has MyAnimeList rantings, rankings, descriptions of the content, and even recommendations for similar manga. The information should be more than enough to make a decision on what new manga to start reading! As for why this is not available already, I would say that it is probably because the site creators figure people can do the due diligence theirselves if they are really invested. This dataset just makes that process a lot faster.
+
 ## Important Considerations
 1 important caveat that I would like to mention. This project was rather challenging because I basically have to hit the myanimelist API 1000 times (2 hits x 500 titles). The reason is that rather than getting a title by name, they first have you hit /manga?q=TITLE_NAME to get an ID for the title. Then, you have to hit /manga/ID?fields=blahblahblah to get the actual information about the title.
 
@@ -21,9 +23,4 @@ git clone
 pip install -r requirements.txt
 python3 main.py
 
-Note, I actually did this by running each individual file in the order of:
-get_underrated_manga.py
-get_manga_ids.py
-generate_mal_csv.py
-
-but main.py encapsulates all of this.
+Note, you need to have a .env file with a CLIENT_ID set to the id I provided in the lytspace comment.
