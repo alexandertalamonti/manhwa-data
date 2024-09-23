@@ -16,6 +16,8 @@ I realized that hitting the API so many times would either hit rate limits or be
 
 At the end, I clean the data to make it more human readable since MAL's format is kind of eh.
 
+Another caveat to mention is that not all of the manga are found on MAL. I think sometimes, the API is buggy. Only around ~490 get found. I just choose not to include the ones that are not found.
+
 ## How to run
 Just the standard ->
 
