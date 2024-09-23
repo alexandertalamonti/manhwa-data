@@ -130,8 +130,37 @@ flattened_details = [flatten_dict(detail) for detail in manga_details]
 # Create a DataFrame
 manga_df = pd.DataFrame(flattened_details)
 
-# Save to CSV
-csv_filename = "manga_details.csv"
-manga_df.to_csv(csv_filename, index=False, encoding='utf-8')
+# Clean the data!
+print("Cleaning data")
+# Drop some unnecessary columns first
+manga_df = manga_df.drop('pictures', axis=1)
+manga_df = manga_df.drop('recommendations', axis=1)
+manga_df = manga_df.drop('serialization', axis=1)
+manga_df = manga_df.drop('related_anime', axis=1)
 
-print(f"Manga details saved to {csv_filename}")
+# Get genre names from arrays
+def extract_genre_names(genres_json):
+  genres_list = json.loads(genres_json)
+  return [genre['name'] for genre in genres_list]
+
+manga_df['genres'] = manga_df['genres'].apply(extract_genre_names)
+
+# Get author names from arrays
+def extract_author_names(authors_json):
+    authors_list = json.loads(authors_json)
+    return [f"{author['node']['first_name']} {author['node']['last_name']}".strip() for author in authors_list]
+
+manga_df['authors'] = manga_df['authors'].apply(extract_author_names)
+
+# Get related manga titles from arrays
+def extract_related_manga_titles(related_manga_json):
+    related_manga_list = json.loads(related_manga_json)
+    return [manga['node']['title'] for manga in related_manga_list]
+
+manga_df['related_manga'] = manga_df['related_manga'].apply(extract_related_manga_titles)
+
+# Save to CSV
+
+manga_df.to_csv("manga_details.csv", index=False, encoding='utf-8')
+
+print("Manga details saved to manga_details.csv")
